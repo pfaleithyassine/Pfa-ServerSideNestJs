@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Req, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body,  Controller, Delete, Get, Param, Post, Req, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UserService } from './user.service';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { jwtAuthGuard } from 'src/auth/jwt.guard';
@@ -18,7 +18,7 @@ export class UserController {
   async getAllUser(){
     return await this.userService.getAllUsers();
   }
-
+  
   @UseGuards(jwtAuthGuard,AuthGuard)
   //@Role('user')
   @Get("/me")
@@ -26,6 +26,11 @@ export class UserController {
     // i divided the token into 2 partsss w then i took second part li houwa token
     //console.log(req.headers.authorization.split(' ')[1])
     return this.userService.getUserInfoFromToken(req.headers.authorization.split(' ')[1]);
+  }
+  @Get("/get-user/:id")
+  async getUser(@Param('id') id:number){
+
+    return await this.userService.getUser(id);
   }
   @Post("/save-user")
   @UseInterceptors(FilesInterceptor( 'file',10,

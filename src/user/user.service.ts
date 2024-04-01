@@ -26,7 +26,7 @@ export class UserService {
             throw new ConflictException("User already exists");
         }else {
             const user = await this.userRepository.create(userDto);
-            user.profileImage = `http://localhost:3000/uploads/${filename}`;
+            user.profileImage = `http://localhost:5000/uploads/${filename}`;
             user.password = await hash(user.password,10);
             console.log(user)
             return await this.userRepository.save(user);
@@ -45,5 +45,10 @@ export class UserService {
             const myInfo = this.jwtService.decode(token);
             return myInfo;
           }
+
+    async getUser(id:number){
+        return await this.userRepository.findOne({where:{id}});
+    
+    }      
     
 }
