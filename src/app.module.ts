@@ -10,6 +10,7 @@ import { ProductsModule } from './products/products.module';
 import { AgentSellerModule } from './agent-seller/agent-seller.module';
 import { ContractModule } from './contract/contract.module';
 import { PurchasesModule } from './purchases/purchases.module';
+import { ClaimsModule } from './claims/claims.module';
 
 
 
@@ -31,6 +32,7 @@ import { PurchasesModule } from './purchases/purchases.module';
     AgentSellerModule,
     ContractModule,
     PurchasesModule,
+    ClaimsModule,
     
   ],
   controllers: [],
