@@ -6,10 +6,13 @@ import { User } from 'src/user/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './auth.strategy';
+import { AgentSeller } from 'src/user/agentSeller.entity';
+import { Insurance } from 'src/user/insurance.entity';
+import { RepairMember } from 'src/user/repairMember.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User]) ,
+    TypeOrmModule.forFeature([User,AgentSeller,Insurance,RepairMember]) ,
     JwtModule.register({
     }),
     PassportModule,

@@ -1,4 +1,4 @@
-import { Body,  Controller, Delete, Get, Param, Post, Req, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body,  Controller, Delete, Get, Param, Patch, Post, Req,    UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UserService } from './user.service';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { jwtAuthGuard } from 'src/auth/jwt.guard';
@@ -7,6 +7,7 @@ import { FilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { UserDto } from './dto/user.dto';
 import { Request } from 'express';
+import { UpdateUserDto } from './dto/updateUser.dto';
 
 
 
@@ -23,8 +24,6 @@ export class UserController {
   //@Role('user')
   @Get("/me")
   get(@Req() req:Request) {
-    // i divided the token into 2 partsss w then i took second part li houwa token
-    //console.log(req.headers.authorization.split(' ')[1])
     return this.userService.getUserInfoFromToken(req.headers.authorization.split(' ')[1]);
   }
   @Get("/get-user/:id")
@@ -54,5 +53,21 @@ export class UserController {
   async deleteUser(@Param('id') id:number){
     return await this.userService.deleteUser(id);
   }
+
+
+  @UseGuards(jwtAuthGuard,AuthGuard)
+  @Role('admin')
+  @Patch("desactivate-user/:id")
+  async desactivateUser(@Req() req:Request,@Param('id') id:number){
+    return await this.userService.desactivateUser(id);
+  }
+  @UseGuards(jwtAuthGuard,AuthGuard)
+  @Role('admin')
+  @Patch("update-user/:id")
+  async updateUser(@Param('id') id:number,@Body() body:UpdateUserDto){
+    return await this.userService.updateUser(id,body);
+  }
+  ay
+  
 
 }

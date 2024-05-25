@@ -6,6 +6,10 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { ProductsModule } from './products/products.module';
+import { AgentSellerModule } from './agent-seller/agent-seller.module';
+import { ContractModule } from './contract/contract.module';
+import { PurchasesModule } from './purchases/purchases.module';
 
 
 
@@ -23,6 +27,10 @@ import { join } from 'path';
     }),
     UserModule,
     AuthModule,
+    ProductsModule,
+    AgentSellerModule,
+    ContractModule,
+    PurchasesModule,
     
   ],
   controllers: [],

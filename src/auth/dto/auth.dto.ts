@@ -1,4 +1,5 @@
 import { IsEmail, IsString,  MaxLength,  MinLength } from "class-validator";
+import { Role } from "src/user/enum/role.enum";
 
 export class AuthDto{
 
@@ -9,5 +10,7 @@ export class AuthDto{
     @MinLength(4,{message:"password must be at least 4 caracters"})
     @MaxLength(20,{message:"password must be at most 20 caracters"})
     password:string;
+
+    role:Role;
 
 }

@@ -7,10 +7,12 @@ import { AuthModule } from 'src/auth/auth.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { JwtModule } from '@nestjs/jwt';
 
+
 @Module({
   imports:[ TypeOrmModule.forFeature([User]),
   AuthModule,
-  MulterModule.register({
+  
+   MulterModule.register({
     dest: 'uploads/',
   
   }),
