@@ -1,11 +1,11 @@
-import { IsNumber, IsDate, IsDateString } from "class-validator";
+import { IsNumber, IsDate, IsDateString, IsString } from "class-validator";
 
 export class BuyProductDto{
     @IsNumber()
     userId: number;
-    @IsNumber()
+    @IsString()
     productId: number;
-    @IsNumber()
+    @IsString()
     contractId: number;
     @IsDateString()
     dateFin: Date;

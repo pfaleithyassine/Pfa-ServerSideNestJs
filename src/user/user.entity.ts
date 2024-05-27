@@ -5,7 +5,6 @@ import { EtatUser } from "./enum/etatuser.enum";
 import { Product } from "src/products/products.entity";
 import { Contract } from "src/contract/contract.entity";
 import { Purchase } from "src/purchases/purchase.entity";
-import { UserClaims } from "src/claims/UserClaims.entity";
 
 @Entity("user")
 export abstract class User extends BaseEntity {
@@ -36,8 +35,7 @@ export abstract class User extends BaseEntity {
     @OneToMany(() => Purchase, purchase => purchase.user)
     purchases: Purchase[];
 
-    @OneToMany(() => UserClaims, userclaims => userclaims.user)
-    userclaims: UserClaims[];
+
 
   
 

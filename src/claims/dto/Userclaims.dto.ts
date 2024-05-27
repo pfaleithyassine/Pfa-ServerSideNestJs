@@ -1,5 +1,5 @@
 import { IsEnum, IsNumber, IsString } from "class-validator";
-import { TypeClaim } from "../enums/TypeClaim.enum";
+import { StatusClaim } from "../enums/StatusClaim.enum";
 
 
 export class UserClaimDto{
@@ -7,12 +7,8 @@ export class UserClaimDto{
     description: string;
     
     @IsNumber()
-    user: number;
+    purchaseId: number;
     
-    @IsNumber()
-    claim: number;
 
-    @IsEnum( TypeClaim )
-    typeClaim: TypeClaim;
 
 }

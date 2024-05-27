@@ -1,7 +1,8 @@
+import { Claims } from "src/claims/claims.entity";
 import { Contract } from "src/contract/contract.entity";
 import { Product } from "src/products/products.entity";
 import { User } from "src/user/user.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 
 
@@ -21,5 +22,7 @@ export class Purchase{
     product: Product;
     @ManyToOne(() => Contract, contract => contract.purchases)
     contract: Contract;
+    @OneToMany(() => Claims, claim => claim.purchase)
+    claims: Claims[];
 
 }

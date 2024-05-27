@@ -27,8 +27,7 @@ export class Product {
     
     @ManyToOne(() => AgentSeller, agentSeller => agentSeller.products, { nullable: true })
     agentSeller: AgentSeller;
-    @OneToMany(() => Contract, contract => contract.product)
-    Contracts: Contract[];
+  
 
     @OneToMany(() => Purchase, purchase => purchase.product)
     purchases: Purchase[];

@@ -37,4 +37,13 @@ export class PurchasesService {
         await this.purchaseRepository.save(purchase);
         return { message: 'Purchase completed' };
     }
+
+    async getPurchasesByUser(userId: number): Promise<Purchase[]> {
+      return await this.purchaseRepository.find({
+          where: { user: { id: userId } },
+          relations: ['user', 'product', 'contract'],
+      });
+  }
+
+
 }

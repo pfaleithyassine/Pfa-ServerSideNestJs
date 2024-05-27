@@ -8,7 +8,10 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.useStaticAssets(join(__dirname,  '..' , '/uploads'),{prefix:'/uploads/'});
   app.useGlobalPipes(new ValidationPipe({
-    whitelist: true
+    whitelist: true,
+    transformOptions: {
+      enableImplicitConversion: true, // <- This line here
+    },
   }))
   app.useGlobalInterceptors(
     new ClassSerializerInterceptor(app.get(Reflector))

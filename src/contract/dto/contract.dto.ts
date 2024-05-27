@@ -9,10 +9,7 @@ export class ContractDto {
     description: string;
     @IsNumber()
     price: number;
-    @IsDateString()
-    dateFin: Date;
-    @IsNumber()
-    user: number;
-    @IsNumber()
-    product: number;
+   
+    
+    
 }

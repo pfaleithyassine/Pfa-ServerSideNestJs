@@ -15,14 +15,7 @@ export class Contract{
     @Column()
     price: number;
 
-    @Column({default:new Date()})
-    dateDebut: Date;
-    @Column()
-    dateFin: Date;
-
     @OneToMany(() => Purchase, purchase => purchase.contract)
     purchases: Purchase[];
 
-    @ManyToOne(() => Product, product => product.Contracts)
-    product: Product;
 }
