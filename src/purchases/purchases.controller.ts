@@ -8,7 +8,7 @@ export class PurchasesController {
 
   @Post('/buy')
   async buyProduct(@Body() body: BuyProductDto) {
-    console.log(body)
-    return await this.purchasesService.userBuyProduct(body.userId, body.productId);
+    console.log(body.userId, body.productId)
+    return await this.purchasesService.userBuyProduct(body.userId, body.productId, body.contractId, body.dateFin);
   }
 }

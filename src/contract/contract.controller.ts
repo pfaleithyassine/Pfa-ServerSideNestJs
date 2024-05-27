@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ContractService } from './contract.service';
 import { ContractDto } from './dto/contract.dto';
 
@@ -12,4 +12,10 @@ export class ContractController {
     console.log(contractDto)
     return this.contractService.createContract(contractDto);
   }
+
+  @Get("/getall")
+  async getContracts() {
+    console.log("get all contracts")
+    return this.contractService.getContracts();
+  } 
 }

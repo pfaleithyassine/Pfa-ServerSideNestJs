@@ -1,4 +1,4 @@
-import { IsEmail, IsString, Length } from "class-validator";
+import { IsEmail, IsString, Length, isString } from "class-validator";
 import { Role } from "../enum/role.enum";
 import { EtatUser } from "../enum/etatuser.enum";
 
@@ -16,6 +16,9 @@ export class UserDto{
     @IsString()
     role:Role;
     
+    @IsString()
+    companyName:string;
+
     isActivate:EtatUser
 
     createdAt:Date;

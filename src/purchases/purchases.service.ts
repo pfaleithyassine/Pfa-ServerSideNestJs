@@ -4,6 +4,7 @@ import { Product } from 'src/products/products.entity';
 import { User } from 'src/user/user.entity';
 import { Repository } from 'typeorm';
 import { Purchase } from './purchase.entity';
+import { Contract } from 'src/contract/contract.entity';
 
 @Injectable()
 export class PurchasesService {
@@ -14,17 +15,24 @@ export class PurchasesService {
         private readonly productRepository: Repository<Product>,
         @InjectRepository(Purchase)
         private readonly purchaseRepository: Repository<Purchase>,
+        @InjectRepository(Contract)
+        private readonly contractRepository: Repository<Contract>,
       ) {}
-      async userBuyProduct(userId: number, productId: number) {
+      async userBuyProduct(userId: number, productId: number,contractId:number, dateFin: Date) {
         const product = await this.productRepository.findOne({ where: { id: productId } });
+        console.log(product.stock)
         if (product.stock === 0) {
           return { message: 'Product out of stock' };
         }
         const user = await this.userRepository.findOne({ where: { id: userId } });
+        const contract = await this.contractRepository.findOne({ where: { id: contractId } });
+
         const purchase = new Purchase();
-        purchase.product = product;
-        purchase.user = user;
         product.stock -= 1;
+        purchase.product = product;
+        purchase.contract = contract;
+        purchase.dateFin = new Date(dateFin);
+        purchase.user = user;
         await this.productRepository.save(product);
         await this.purchaseRepository.save(purchase);
         return { message: 'Purchase completed' };

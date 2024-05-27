@@ -112,7 +112,7 @@ export class AuthService {
             throw new BadRequestException(`Wrong Credentials`)
         }
         
-        const token = await this.signToken({id:candidate.id,email:candidate.email,role:candidate.role})
+        const token = await this.signToken({id:candidate.id,name:candidate.name,email:candidate.email,role:candidate.role})
 
         return {token};
     }
@@ -131,7 +131,7 @@ export class AuthService {
             throw new BadRequestException(`Wrong Credentials && pwd`)
         }
         
-        const token = await this.signToken({id:candidate.id,email:candidate.email,role:candidate.role})
+        const token = await this.signToken({id:candidate.id,name:candidate.name,email:candidate.email,role:candidate.role})
 
         return {token};
     }
@@ -150,7 +150,7 @@ export class AuthService {
             throw new BadRequestException(`Wrong Credentials`)
         }
         
-        const token = await this.signToken({id:candidate.id,email:candidate.email,role:candidate.role})
+        const token = await this.signToken({id:candidate.id,name:candidate.name,email:candidate.email,role:candidate.role})
 
         return {token};
     }
@@ -169,7 +169,7 @@ export class AuthService {
                 throw new BadRequestException(`Wrong Credentials`)
             }
             
-            const token = await this.signToken({id:candidate.id,email:candidate.email,role:candidate.role})
+            const token = await this.signToken({id:candidate.id,name:candidate.name,email:candidate.email,role:candidate.role})
 
         return {token};
     }
@@ -182,7 +182,7 @@ export class AuthService {
     async comparePassword(args:{password:string,hashedPassword:string}){
         return await bcrypt.compare(args.password,args.hashedPassword)
     }
-    async signToken(args:{id:number,email:string,role:Role}){
+    async signToken(args:{id:number,name:string,email:string,role:Role}){
         const payload = args
         return this.jwtService.signAsync(payload,{secret:'laythouna'})
     }

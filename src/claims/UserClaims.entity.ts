@@ -1,6 +1,7 @@
 import { User } from "src/user/user.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Claims } from "./claims.entity";
+import { TypeClaim } from "./enums/TypeClaim.enum";
 
 
 @Entity("Userclaims")
@@ -10,6 +11,9 @@ export class UserClaims{
 
     @Column()
     description: string;
+
+    @Column()
+    typeClaim: TypeClaim;
 
     @Column({default: new Date()})
     createdAt: Date;

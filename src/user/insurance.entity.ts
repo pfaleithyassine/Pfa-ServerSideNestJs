@@ -10,6 +10,5 @@ export class Insurance extends User{
     @Column({ default: Role.INSURANCE })
     role: Role;
 
-    @Column()
-    companyName: string;
+   
 }

@@ -35,8 +35,7 @@ export abstract class User extends BaseEntity {
     createdAt:Date
     @OneToMany(() => Purchase, purchase => purchase.user)
     purchases: Purchase[];
-    @OneToMany(() => Contract, contract => contract.user)
-    Contracts: Contract[];
+
     @OneToMany(() => UserClaims, userclaims => userclaims.user)
     userclaims: UserClaims[];
 

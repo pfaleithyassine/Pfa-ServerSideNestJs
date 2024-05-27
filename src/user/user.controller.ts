@@ -67,7 +67,7 @@ export class UserController {
   async updateUser(@Param('id') id:number,@Body() body:UpdateUserDto){
     return await this.userService.updateUser(id,body);
   }
-  ay
+  
   
 
 }
