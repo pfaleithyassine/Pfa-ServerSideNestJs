@@ -38,6 +38,8 @@ export class PurchasesService {
         return { message: 'Purchase completed' };
     }
 
+    
+
     async getPurchasesByUser(userId: number): Promise<Purchase[]> {
       return await this.purchaseRepository.find({
           where: { user: { id: userId } },
@@ -45,5 +47,17 @@ export class PurchasesService {
       });
   }
 
+  
+  async  getUserContracts(userId: number): Promise<Contract[]> {
+    const contracts = await this.contractRepository
+        .createQueryBuilder("contract")
+        .innerJoinAndSelect("contract.purchases", "purchase")
+        .innerJoinAndSelect("purchase.product", "product")
+        .innerJoinAndSelect("purchase.user", "user")
+        .where("user.id = :userId", { userId })
+        .getMany();
+
+    return contracts;
+}
 
 }

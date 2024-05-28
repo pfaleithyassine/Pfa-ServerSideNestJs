@@ -6,7 +6,7 @@ export class UserClaimDto{
     @IsString()
     description: string;
     
-    @IsNumber()
+    @IsString()
     purchaseId: number;
     
 

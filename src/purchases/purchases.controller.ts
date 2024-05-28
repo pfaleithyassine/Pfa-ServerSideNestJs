@@ -16,4 +16,9 @@ export class PurchasesController {
   async getPurchases( @Param('id') id: number) {
     return await this.purchasesService.getPurchasesByUser(id);
   }
+
+  @Get('/getcontracts/:id')
+  async getContracts( @Param('id') id: number) {
+    return await this.purchasesService.getUserContracts(id);
+  }
 }
